@@ -1,0 +1,60 @@
+<canvas id='c'></canvas>
+<style>*{margin: 0; padding: 0;}</style>
+<script>
+	var cnv = document.getElementById('c');
+	cnv.width = window.innerWidth;
+	cnv.height = window.innerHeight;
+	var ctx = cnv.getContext('2d');
+	
+	function rand(min, max){
+	var rand = min + Math.random() * (max + 1 - min);
+	return Math.floor(rand);
+	}
+
+	function half(x, y, z){
+	return (1-z)*x+z*y;
+	}
+	
+	var x = cnv.width;
+	var y = cnv.height;
+	
+	function get(){
+	var ax = cnv.width/2;
+	var ay = 0;
+
+	var bx = 0;
+	var by = cnv.height;
+
+	var cx = cnv.width;
+	var cy = cnv.height;
+
+	var r = rand(0, 2)
+
+	if(r == 0){
+	x = half(x, ax, 0.5);
+	y = half(y, ay, 0.5);
+	}
+
+	if(r == 1){
+	x = half(x, bx, 0.5);
+	y = half(y, by, 0.5);
+	}
+
+	if(r == 2){
+	x = half(x, cx, 0.5);
+	y = half(y, cy, 0.5);
+	}
+
+	ctx.fillRect(x,y,1,1);
+
+	}
+
+    function getting(){
+for(var i = 0; i < 100; i++){
+	get();
+}
+    }
+    
+    setInterval(getting, 1000/60);
+
+</script>
